@@ -1,5 +1,8 @@
-const userDB = require("./../models/userDB");
-const transferHistoryDB = require("../models/transferHistoryDB");
+const path = require("path");
+const userDB = require(path.resolve(__dirname + "./../models/userDB"));
+const transferHistoryDB = require(path.resolve(
+  __dirname + "/../models/transferHistoryDB"
+));
 
 const listAllUsers = async (req, res) => {
   try {

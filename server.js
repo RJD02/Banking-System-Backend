@@ -3,12 +3,13 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const morgan = require("morgan");
+const path = require("path");
 const {
   listAllUsers,
   listAllTransactions,
   transfer,
   getUser,
-} = require("./controllers/userController");
+} = require(path.resolve(__dirname + "/controllers/userController"));
 const app = express();
 mongoose
   .connect(process.env.MONGO_DB_URL_DEV, {

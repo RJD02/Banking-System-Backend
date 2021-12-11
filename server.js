@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const User = require("./models/userDB");
 const morgan = require("morgan");
 const path = require("path");
 const {
@@ -12,7 +13,7 @@ const {
 } = require(path.resolve(__dirname + "/controllers/userController"));
 const app = express();
 mongoose
-  .connect(process.env.MONGO_DB_URL_DEV, {
+  .connect(process.env.MONGO_DB_URL_PROD, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -42,6 +43,18 @@ app.get("/user/:id", getUser);
 
 app.post("/transfer/:id", transfer);
 
-app.listen(process.env.PORT, () => {
-  console.log(`Listening on port ${process.env.PORT}`);
+// const createNewUser = async () => {
+//   const newUser = new User({
+//     accId: "123",
+//     name: "Leo Celestia",
+//     email: "leo@celestia.com",
+//     currentBalance: "2000000",
+//   });
+//   await newUser.save();
+// };
+
+// createNewUser();
+
+app.listen(process.env.PORT || 8000, () => {
+  console.log(`Listening on port ${process.env.PORT || 8000}`);
 });
